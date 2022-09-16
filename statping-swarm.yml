@@ -23,6 +23,7 @@ services:
         - traefik.http.services.statping.loadbalancer.server.port=8080
     volumes:
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - statping_data:/app
     networks:
       - traefik-net
@@ -43,6 +44,7 @@ services:
     networks:
       - default
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - postgres_data:/var/lib/postgresql/data
 
   # Run on demand for debugging.
@@ -63,6 +65,8 @@ services:
         - traefik.http.routers.statping-adminer.entrypoints=https
         - traefik.http.routers.statping-adminer.middlewares=internal-whitelist
         - traefik.http.services.statping-adminer.loadbalancer.server.port=8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - default
       - traefik-net
