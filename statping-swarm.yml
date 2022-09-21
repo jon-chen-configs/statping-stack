@@ -22,7 +22,7 @@ services:
         - traefik.http.routers.statping.middlewares=internal-whitelist
         - traefik.http.services.statping.loadbalancer.server.port=8080
         - homepage.name=Statping 
-        - homepage.group=Media
+        - homepage.group=Network
         - homepage.icon=https://raw.githubusercontent.com/modem7/MiscAssets/master/Icons/Dashboard-Icons/statping.png
         - homepage.href=https://statping.cynicsoft.net/
         - homepage.description=Status monitoring
