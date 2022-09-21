@@ -21,6 +21,11 @@ services:
         - traefik.http.routers.statping.entrypoints=https
         - traefik.http.routers.statping.middlewares=internal-whitelist
         - traefik.http.services.statping.loadbalancer.server.port=8080
+        - homepage.name=Statping 
+        - homepage.group=Media
+        - homepage.icon=https://raw.githubusercontent.com/modem7/MiscAssets/master/Icons/Dashboard-Icons/statping.png
+        - homepage.href=https://statping.cynicsoft.net/
+        - homepage.description=Status monitoring
     volumes:
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
       - /var/run/docker.sock:/var/run/docker.sock
