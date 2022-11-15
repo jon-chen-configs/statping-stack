@@ -10,7 +10,12 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.platform.arch != aarch64]
+        # Docker (20.10.3) on Synology bug where env vars from env_file 
+        # not set on container.
+        # constraints: [node.platform.arch != aarch64]
+        constraints:
+          - node.platform.arch != aarch64
+          - node.hostname != ${NAS_HOSTNAME}
       resources:
         limits:
           memory: 512M
@@ -180,7 +185,7 @@ volumes:
     driver_opts:
       type: nfs
       o: addr=${NAS_HOST},nolock,noresvport,vers=2
-      device: :/volume1/docker/backups
+      device: :/volume4/docker/backups
 
 
 networks:
