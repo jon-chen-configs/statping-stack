@@ -149,8 +149,8 @@ services:
       - default
     command: >-
       sh -c 'LOG=/logs/statping-backup-db-job.log;
-      date 2>&1 | tee $$LOG;
       set -o pipefail;
+      date 2>&1 | tee $$LOG;
       echo "$$POSTGRES_HOST:$$POSTGRES_PORT:$$POSTGRES_DB:$$POSTGRES_USER:$$POSTGRES_PASSWORD" > /root/.pgpass 2>&1 | tee -a $$LOG;
       wget -SO - http://tasks.healthchecks:8000/ping/f1432f64-5ae4-47e3-8d52-62ba7b20f6e6/start 2>&1 | tee -a $$LOG;
       echo "backing up db to backup dir..." 2>&1 | tee -a $$LOG &&
